@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/*
+ * Brand tokens (from the investor deck). Every text/background pair used on
+ * the site is checked for WCAG AA; see README "Colour and contrast".
+ */
+:root {
+  --green-900: #16302a;
+  --green-700: #2f5d4e;
+  --sand: #f3ede2;
+  --paper: #faf7f1;
+  --terracotta: #a7481f;
+  --terracotta-dark: #8e3e1b;
+  --gold: #e3b04b; /* highlight on dark backgrounds only, never text on sand */
+  --ink: #4f5249;
+  --mist: #c7d3cb;
+  --line: #ddd3c1;
+}
+
+@theme {
+  /* Drop Tailwind's default palette so only brand colours can be used. */
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-green-900: var(--green-900);
+  --color-green-700: var(--green-700);
+  --color-sand: var(--sand);
+  --color-paper: var(--paper);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-dark: var(--terracotta-dark);
+  --color-gold: var(--gold);
+  --color-ink: var(--ink);
+  --color-mist: var(--mist);
+  --color-line: var(--line);
+  /* Borders on form controls need 3:1 against the page, which --line lacks. */
+  --color-control: #7a7667;
+
+  --font-sans: var(--font-dm-sans), ui-sans-serif, sans-serif;
+  --font-serif: var(--font-dm-serif), Georgia, serif;
+
+  --animate-rise: rise 240ms ease-out both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--sand);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 48rem) {
+    body {
+      font-size: 1.125rem; /* 18px */
+    }
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    color: var(--green-900);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--terracotta);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* On dark bands the terracotta ring is too faint; use gold. */
+  .on-dark :focus-visible {
+    outline-color: var(--gold);
+  }
+
+  ::selection {
+    background: var(--green-900);
+    color: var(--sand);
+  }
+
+  summary {
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
