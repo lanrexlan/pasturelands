@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { Children, cloneElement, isValidElement, type ReactNode } from "react";
-import { HouseScene } from "@/components/illustrations/HouseScene";
+import { IsoHouse } from "@/components/illustrations/IsoHouse";
 
 export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
@@ -88,7 +88,7 @@ export async function renderOg({
             overflow: "hidden",
           }}
         >
-          {flatten(<HouseScene />)}
+          {flatten(<IsoHouse animate={false} title="" />)}
         </div>
       </div>
     ),

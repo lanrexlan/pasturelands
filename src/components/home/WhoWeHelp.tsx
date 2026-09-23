@@ -1,3 +1,4 @@
+import { Neighbourhood } from "../illustrations/IsoObjects";
 import { Container, Eyebrow } from "../ui";
 
 const sellers = [
@@ -36,15 +37,26 @@ export function WhoWeHelp() {
             An agent&apos;s job is to find a buyer. We are the buyer, so there is
             no waiting to see who turns up.
           </p>
+          <div data-reveal className="mt-10">
+            <Neighbourhood className="h-auto w-full max-w-md" />
+            <p className="mt-2 text-[0.9375rem]">Flats, terraces, duplexes, bungalows: we buy all kinds of homes.</p>
+          </div>
         </div>
 
         <ul className="border-t border-green-700">
-          {sellers.map((s) => (
+          {sellers.map((s, i) => (
             <li
               key={s.who}
-              className="grid gap-2 border-b border-green-700 py-7 sm:grid-cols-[13rem_1fr] sm:gap-8"
+              data-reveal
+              style={{ ["--i" as string]: i }}
+              className="group relative grid gap-2 border-b border-green-700 py-7 transition-colors duration-300 hover:bg-green-700/40 sm:grid-cols-[3rem_12rem_1fr] sm:gap-6 sm:px-3"
             >
-              <h3 className="font-serif text-[1.625rem] leading-tight text-sand">{s.who}</h3>
+              <span className="font-serif text-[1.25rem] text-gold" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="font-serif text-[1.625rem] leading-tight text-sand transition-transform duration-300 group-hover:translate-x-1">
+                {s.who}
+              </h3>
               <p>{s.line}</p>
             </li>
           ))}

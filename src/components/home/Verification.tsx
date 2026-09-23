@@ -1,3 +1,4 @@
+import { DeedArt } from "../illustrations/IsoObjects";
 import { Container, Eyebrow } from "../ui";
 
 const checks = [
@@ -34,28 +35,34 @@ function Tick() {
 
 export function Verification() {
   return (
-    <section aria-labelledby="verify-heading" className="bg-sand py-20 sm:py-24">
+    <section aria-labelledby="verify-heading" className="relative overflow-hidden bg-sand py-20 sm:py-28">
       <Container className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
-        <div>
+        <div data-reveal>
           <Eyebrow>Our verification promise</Eyebrow>
           <h2 id="verify-heading" className="mt-4 text-[2.5rem] sm:text-[3.25rem]">
             We check every title before we pay for it.
           </h2>
           <p className="mt-6 max-w-md">
-            This protects you as a seller, because the sale won&apos;t fall
-            apart later. And it protects the next buyer, because the home they
-            buy from us has already been checked.
+            This protects you as a seller, because the sale won&apos;t fall apart later. And it protects the next buyer,
+            because the home they buy from us has already been checked.
           </p>
+          <div data-reveal className="mt-8 hidden max-w-sm lg:block">
+            <DeedArt className="h-auto w-full" />
+          </div>
         </div>
 
-        <ol className="border-t-2 border-green-900">
-          {checks.map((c) => (
-            <li key={c.title} className="flex gap-5 border-b border-line py-6">
-              <Tick />
+        <ol data-reveal className="border-t-2 border-green-900">
+          {checks.map((c, i) => (
+            <li
+              key={c.title}
+              className="group flex gap-5 border-b border-line py-6 transition-colors duration-300 hover:bg-paper sm:px-3"
+              style={{ ["--i" as string]: i }}
+            >
+              <span className="pop">
+                <Tick />
+              </span>
               <div>
-                <h3 className="font-sans text-[1.125rem] font-bold leading-snug text-green-900">
-                  {c.title}
-                </h3>
+                <h3 className="font-sans text-[1.125rem] font-bold leading-snug text-green-900">{c.title}</h3>
                 <p className="mt-1">{c.body}</p>
               </div>
             </li>
