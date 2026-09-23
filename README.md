@@ -9,7 +9,10 @@ The brief is in `PASTURELANDS_WEBSITE_HANDOVER.md`.
 | --- | --- |
 | `/` Home | Built (isometric illustrations, scroll reveals) |
 | `/sell` Seller form | Built, end to end: Supabase + Resend email |
-| `/homes`, `/about`, `/investors`, `/privacy` | Not built yet (links currently show the 404 page) |
+| `/homes`, `/homes/[slug]` | Built. Designed empty state with waitlist sign-up; cards and detail pages read published listings |
+| `/about` | Built. Founder photos and bios are placeholders |
+| `/investors` | Built. Contact only; emails `INVESTOR_EMAIL_TO` |
+| `/privacy` | Drafted for the NDPA 2023. Marked [TO BE REVIEWED BY COUNSEL] |
 
 ## Run locally
 
@@ -66,6 +69,21 @@ Storage > `seller-photos` > `uploads/<draft id>/`.
 - Spam: hidden honeypot field, a minimum fill time, and the database rate limit. No CAPTCHA.
 - On success: the lead is stored, the team gets an email, and the seller sees their reference, what
   happens next and when, plus a WhatsApp button pre-filled with the reference.
+
+## Publishing a home
+
+For v1 the team publishes listings in the Supabase dashboard:
+
+1. Upload photos to Storage > `listing-photos` (e.g. `gwarinpa-duplex/1.jpg`). Landscape, at least 1600px wide.
+2. Add a row to `listings`: `slug` (URL, lowercase-with-dashes), `status` (`for_sale`, `for_rent`,
+   `under_offer`, `sold`, `let`), `title`, `state` (`abuja`/`lagos`), `area`, `property_type` (same values as
+   the seller form, e.g. `duplex`), beds/baths, `price_ngn` or `rent_ngn_per_year`, `renovation_summary`,
+   `description`, and `photos` as a list of storage paths (e.g. `{gwarinpa-duplex/1.jpg,gwarinpa-duplex/2.jpg}`).
+3. Set `title_verified = true` only once the lawyer has signed off. The "Title verified" badge shows only then.
+4. Set `published = true`. The home appears within five minutes.
+
+Buyer questions, waitlist sign-ups and investor messages land in the `enquiries` table (`kind` column) and are
+emailed to `LEADS_EMAIL_TO` (investors: `INVESTOR_EMAIL_TO`).
 
 ## Deploy (Vercel)
 

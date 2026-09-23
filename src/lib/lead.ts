@@ -156,20 +156,33 @@ export const stepSchemas = [
   }),
 ] as const;
 
-export const leadSchema = stepSchemas
-  .reduce<z.ZodObject>((acc, s) => acc.extend(s.shape), z.object({}))
-  .superRefine((v, ctx) => {
-    if (!v.whatsappSame && normalisePhone(String(v.whatsapp)) === null) {
-      ctx.addIssue({
-        code: "custom",
-        path: ["whatsapp"],
-        message: "Enter your WhatsApp number, or tick that it's the same as your phone.",
-      });
-    }
-    if (v.contactPref === "email" && !v.email) {
-      ctx.addIssue({ code: "custom", path: ["email"], message: "Add an email address so we can email you." });
-    }
-  });
+const leadBase = stepSchemas.reduce<z.ZodObject>((acc, s) => acc.extend(s.shape), z.object({}));
+
+/**
+ * Rules that span fields. Kept outside the Zod object because Zod skips
+ * refinements when any field fails, which would hide these errors until a
+ * second attempt.
+ */
+function crossFieldErrors(v: LeadInput): FieldErrors {
+  const out: FieldErrors = {};
+  if (!v.whatsappSame && normalisePhone(String(v.whatsapp ?? "")) === null) {
+    out.whatsapp = "Enter your WhatsApp number, or tick that it's the same as your phone.";
+  }
+  if (v.contactPref === "email" && !String(v.email ?? "").trim()) {
+    out.email = "Add an email address so we can email you.";
+  }
+  return out;
+}
+
+/** Validate a whole lead: field rules plus cross-field rules. Empty object means valid. */
+export function validateLead(v: LeadInput): FieldErrors {
+  const res = leadBase.safeParse(v);
+  const errors = res.success ? {} : collectErrors(res.error);
+  for (const [k, msg] of Object.entries(crossFieldErrors(v)) as [keyof LeadInput, string][]) {
+    if (!errors[k]) errors[k] = msg;
+  }
+  return errors;
+}
 
 export type LeadInput = {
   state: string;
@@ -234,14 +247,9 @@ export function validateStep(step: number, v: LeadInput): FieldErrors {
   const schema = stepSchemas[step];
   const res = schema.safeParse(v);
   const errors = res.success ? {} : collectErrors(res.error);
-  if (step === stepSchemas.length - 1) {
-    const all = leadSchema.safeParse(v);
-    if (!all.success) {
-      const extra = collectErrors(all.error);
-      for (const key of Object.keys(schema.shape) as (keyof LeadInput)[]) {
-        if (!errors[key] && extra[key]) errors[key] = extra[key];
-      }
-    }
+  const cross = crossFieldErrors(v);
+  for (const key of Object.keys(schema.shape) as (keyof LeadInput)[]) {
+    if (!errors[key] && cross[key]) errors[key] = cross[key];
   }
   return errors;
 }

@@ -2,12 +2,11 @@
 
 import { recipients, sendEmail, tableEmail } from "@/lib/email";
 import {
-  collectErrors,
   formatNaira,
   labelFor,
-  leadSchema,
   normalisePhone,
   options,
+  validateLead,
   type FieldErrors,
   type LeadInput,
 } from "@/lib/lead";
@@ -28,11 +27,11 @@ export async function submitLead(
   // Quietly accept bot submissions without storing them.
   if (looksLikeBot(input.website, input.startedAt, 8000)) return { ok: true, ref: "received" };
 
-  const parsed = leadSchema.safeParse(input);
-  if (!parsed.success) {
+  const errors = validateLead(input);
+  if (Object.keys(errors).length) {
     return {
       ok: false,
-      errors: collectErrors(parsed.error),
+      errors,
       message: "Some answers need another look. We've marked them for you.",
     };
   }
