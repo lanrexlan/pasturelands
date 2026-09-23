@@ -180,3 +180,50 @@ export function Neighbourhood({ className }: ArtProps) {
     </svg>
   );
 }
+
+/** A home under renovation: scaffolding, a ladder and paint. For the empty /homes state. */
+export function RenovationArt({ className }: ArtProps) {
+  const pole = (x: number, y: number, i: number) => (
+    <Box key={`p${x}-${y}`} x={x} y={y} w={4} d={4} h={150} m="dark" className="iso-in" style={at(i, 60, 500)} />
+  );
+  return (
+    <svg viewBox="-205 -125 460 405" className={className} aria-hidden="true">
+      <g className="iso-in" style={at(0)}>
+        <Box x={0} y={0} z={-18} w={280} d={220} h={18} m="sand" />
+      </g>
+      {/* The house, walls part-painted */}
+      <g className="iso-in" style={at(1)}>
+        <Box x={40} y={30} w={170} d={130} h={120} m="wall">
+          <LeftRect at={160} x={40} z={0} w={80} h={120} fill="#DDD3C1" />
+          <LeftRect at={160} x={58} z={70} w={44} h={32} fill={g9} />
+          <LeftRect at={160} x={140} z={70} w={44} h={32} fill={g9} />
+          <LeftRect at={160} x={150} z={0} w={28} h={50} fill={g7} />
+          <RightRect at={210} y={50} z={70} d={60} h={32} fill={gold} />
+          <RightRect at={210} y={50} z={16} d={60} h={32} fill={g9} />
+        </Box>
+        <Box x={32} y={22} z={120} w={186} d={146} h={10} m="green" />
+      </g>
+      {/* Scaffolding along the front */}
+      {pole(40, 176, 0)}
+      {pole(110, 176, 1)}
+      {pole(180, 176, 2)}
+      <g className="iso-in" style={at(3, 60, 500)}>
+        <Box x={36} y={168} z={46} w={160} d={16} h={4} m="terracotta" />
+        <Box x={36} y={168} z={98} w={160} d={16} h={4} m="terracotta" />
+      </g>
+      {/* Ladder leaning on the right wall */}
+      <g className="iso-in" style={at(8, 90)}>
+        <Box x={226} y={70} w={4} d={4} h={96} m="gold" />
+        <Box x={226} y={104} w={4} d={4} h={96} m="gold" />
+        {[16, 36, 56, 76].map((z) => (
+          <Box key={z} x={226} y={70} z={z} w={4} d={38} h={3} m="gold" />
+        ))}
+      </g>
+      {/* Paint tins */}
+      <g className="iso-in" style={at(9, 90)}>
+        <Cylinder cx={250} cy={190} r={12} h={18} m="terracotta" />
+        <Cylinder cx={226} cy={204} r={10} h={14} m="paper" />
+      </g>
+    </svg>
+  );
+}
