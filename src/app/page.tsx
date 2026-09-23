@@ -2,6 +2,7 @@ import { Faq, faqs } from "@/components/home/Faq";
 import { FinalCta } from "@/components/home/FinalCta";
 import { ForBuyers } from "@/components/home/ForBuyers";
 import { Hero } from "@/components/home/Hero";
+import { Ticker } from "@/components/home/Ticker";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Verification } from "@/components/home/Verification";
 import { WhoWeHelp } from "@/components/home/WhoWeHelp";
@@ -20,6 +21,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <Ticker />
       <HowItWorks />
       <WhoWeHelp />
       <ForBuyers />

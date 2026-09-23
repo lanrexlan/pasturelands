@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { RevealObserver } from "@/components/RevealObserver";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -45,7 +46,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-NG" className={`${dmSans.variable} ${dmSerif.variable}`}>
+    <html lang="en-NG" className={`${dmSans.variable} ${dmSerif.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Lets CSS hide scroll-reveal content only when JS can reveal it. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="flex min-h-dvh flex-col">
         <SiteHeader />
         <main id="main" className="flex-1">
@@ -53,6 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <SiteFooter />
         <WhatsAppButton />
+        <RevealObserver />
       </body>
     </html>
   );
