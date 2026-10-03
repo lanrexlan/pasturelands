@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Eyebrow, WhatsAppIcon } from "@/components/ui";
-import { site, whatsappLink } from "@/lib/site";
+import { site, telHref, whatsappLink } from "@/lib/site";
 import { SellForm } from "./SellForm";
 
 export const metadata: Metadata = {
@@ -47,6 +47,17 @@ export default function SellPage() {
             >
               <WhatsAppIcon /> Chat on WhatsApp
             </a>
+            <p className="mt-3 text-[0.9375rem]">
+              Or call{" "}
+              <a href={telHref()} className="font-bold text-green-900 underline underline-offset-4">
+                {site.phone}
+              </a>{" "}
+              or email{" "}
+              <a href={`mailto:${site.email}`} className="font-bold text-green-900 underline underline-offset-4">
+                {site.email}
+              </a>
+              .
+            </p>
             <p className="mt-3 text-[0.9375rem]">{site.replyPromise}</p>
           </div>
         </aside>

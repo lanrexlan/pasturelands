@@ -23,7 +23,7 @@ const sections: { id: string; title: string; body: ReactNode }[] = [
           required by the Nigeria Data Protection Act 2023 (NDPA).
         </p>
         <p>
-          Contact for data protection matters: {site.email}, {site.address}.
+          Contact for data protection matters: <a href={`mailto:${site.email}`}>{site.email}</a>, {site.address}.
         </p>
       </>
     ),
@@ -156,7 +156,7 @@ const sections: { id: string; title: string; body: ReactNode }[] = [
     body: (
       <>
         <p>
-          Email {site.email} or message us on WhatsApp with &quot;Delete my data&quot;. Include your reference (for
+          Email <a href={`mailto:${site.email}?subject=Delete%20my%20data`}>{site.email}</a> or message us on WhatsApp with &quot;Delete my data&quot;. Include your reference (for
           example PL-2026-0001) if you have one. We may ask you to confirm your identity, then we&apos;ll delete your
           data and confirm we have done so within 30 days [timeframe to be confirmed by counsel], unless the law
           requires us to keep part of it; if so, we&apos;ll tell you what and why.

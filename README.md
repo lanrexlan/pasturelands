@@ -102,6 +102,6 @@ emailed to `LEADS_EMAIL_TO` (investors: `INVESTOR_EMAIL_TO`).
 
 ## Placeholders the founders must supply
 
-`[WHATSAPP NUMBER]` (env) · `[Phone]` · `[Email]` · `[Office address]` · `[Domain]` ·
+`[WHATSAPP NUMBER]` (env) · `[Office address]` · `[Domain]` ·
 founder photos and bios · first listing photos · counsel's review of the privacy notice.
 Also confirm the FAQ answers and step wording in `src/components/home/` describe how you actually work.

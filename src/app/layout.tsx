@@ -4,7 +4,7 @@ import { RevealObserver } from "@/components/RevealObserver";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { site } from "@/lib/site";
+import { site, telHref } from "@/lib/site";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -59,6 +59,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteFooter />
         <WhatsAppButton />
         <RevealObserver />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: site.legalName,
+              url: site.url,
+              email: site.email,
+              telephone: telHref().replace("tel:", ""),
+              areaServed: ["Abuja", "Lagos"],
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
       </body>
     </html>
   );
