@@ -26,6 +26,16 @@ export default function InvestorsPage() {
           <p className="mt-6 max-w-md">
             Your message goes to our Founder &amp; CEO, Osundoja Osundare. {site.replyPromise}
           </p>
+          <p className="mt-4 max-w-md">
+            You can also email{" "}
+            <a
+              href={`mailto:${site.email}?subject=Investor%20enquiry`}
+              className="font-bold text-terracotta underline underline-offset-4"
+            >
+              {site.email}
+            </a>
+            .
+          </p>
           <p className="mt-10 max-w-md border-l-4 border-line pl-4 text-[0.9375rem]">
             Nothing on this website is an offer or invitation to buy shares or any other investment in Pasturelands
             Limited.

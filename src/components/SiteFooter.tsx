@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { isPlaceholder, nav, site, whatsappLink } from "@/lib/site";
+import { isPlaceholder, nav, site, telHref, whatsappLink } from "@/lib/site";
 import { Logo } from "./Logo";
 
 export function SiteFooter() {
@@ -25,7 +25,7 @@ export function SiteFooter() {
                 {isPlaceholder(site.phone) ? (
                   site.phone
                 ) : (
-                  <a className="hover:text-sand" href={`tel:${site.phone.replace(/\s/g, "")}`}>
+                  <a className="hover:text-sand" href={telHref()}>
                     {site.phone}
                   </a>
                 )}

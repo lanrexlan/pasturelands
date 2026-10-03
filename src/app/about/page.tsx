@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Neighbourhood } from "@/components/illustrations/IsoObjects";
 import { PageIntro } from "@/components/PageIntro";
 import { Arrow, ButtonLink, Container, Eyebrow } from "@/components/ui";
-import { site } from "@/lib/site";
+import { site, telHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About us",
@@ -112,17 +112,27 @@ export default function AboutPage() {
             </h2>
           </div>
           <dl data-reveal className="border-t-2 border-green-900">
-            {[
-              ["Registered name", site.legalName],
-              ["Registration number", site.rcNumber],
-              ["Incorporated", "September 2026, Nigeria"],
-              ["Office", site.address],
-              ["Phone", site.phone],
-              ["Email", site.email],
-            ].map(([k, v]) => (
+            {(
+              [
+                ["Registered name", site.legalName],
+                ["Registration number", site.rcNumber],
+                ["Incorporated", "September 2026, Nigeria"],
+                ["Office", site.address],
+                ["Phone", site.phone, telHref()],
+                ["Email", site.email, `mailto:${site.email}`],
+              ] as [string, string, string?][]
+            ).map(([k, v, href]) => (
               <div key={k} className="grid gap-1 border-b border-line py-4 sm:grid-cols-[14rem_1fr]">
                 <dt className="font-bold text-green-900">{k}</dt>
-                <dd>{v}</dd>
+                <dd>
+                  {href ? (
+                    <a href={href} className="font-bold text-terracotta underline underline-offset-4">
+                      {v}
+                    </a>
+                  ) : (
+                    v
+                  )}
+                </dd>
               </div>
             ))}
           </dl>
