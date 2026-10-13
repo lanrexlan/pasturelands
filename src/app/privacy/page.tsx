@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Container, Eyebrow } from "@/components/ui";
+import { PageIntro } from "@/components/PageIntro";
+import { Container } from "@/components/ui";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -183,15 +184,16 @@ const sections: { id: string; title: string; body: ReactNode }[] = [
 
 export default function PrivacyPage() {
   return (
-    <section className="bg-sand">
+    <>
+    <PageIntro eyebrow="Legal" title="Your privacy matters."><p>How we use and protect your personal information.</p></PageIntro>
+    <section className="bg-paper">
       <Container className="py-14 sm:py-20">
         <div className="mb-10 border-2 border-terracotta bg-paper px-5 py-4 font-bold text-terracotta-dark">
           [TO BE REVIEWED BY COUNSEL] This draft has not yet been reviewed by a lawyer.
         </div>
         <div className="grid gap-12 lg:grid-cols-[16rem_1fr] lg:gap-16">
           <div>
-            <Eyebrow>Legal</Eyebrow>
-            <h1 className="mt-4 text-[2.75rem] sm:text-[3.5rem]">Privacy notice</h1>
+            <h2 className="text-[2rem]">Privacy notice</h2>
             <p className="mt-3 text-[0.9375rem]">Last updated {LAST_UPDATED}</p>
             <nav aria-label="On this page" className="mt-8 hidden lg:sticky lg:top-8 lg:block">
               <ol className="space-y-2 border-l-2 border-line pl-4 text-[0.9375rem]">
@@ -224,5 +226,6 @@ export default function PrivacyPage() {
         </div>
       </Container>
     </section>
+    </>
   );
 }

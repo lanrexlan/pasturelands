@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ListIcon, XIcon } from "@phosphor-icons/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { nav } from "@/lib/site";
@@ -20,20 +21,10 @@ export function MobileMenu() {
 
   return (
     <details ref={ref} className="group lg:hidden">
-      <summary className="flex min-h-11 items-center gap-2 px-1 font-bold text-green-900">
+      <summary className="flex min-h-11 items-center gap-2 px-1 font-medium text-sand">
         <span className="group-open:hidden">Menu</span>
         <span className="hidden group-open:inline">Close</span>
-        <svg viewBox="0 0 20 20" className="h-5 w-5" aria-hidden="true">
-          <g className="group-open:hidden" fill="currentColor">
-            <rect x="2" y="5" width="16" height="2" />
-            <rect x="2" y="13" width="16" height="2" />
-          </g>
-          <path
-            className="hidden group-open:block"
-            d="m4.3 3 12.7 12.7-1.4 1.4L2.9 4.4zM15.6 3l1.4 1.4L4.3 17.1l-1.4-1.4z"
-            fill="currentColor"
-          />
-        </svg>
+        <ListIcon className="h-5 w-5 group-open:hidden" aria-hidden="true" /><XIcon className="hidden h-5 w-5 group-open:block" aria-hidden="true" />
       </summary>
       <nav
         aria-label="Main"

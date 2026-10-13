@@ -1,17 +1,14 @@
 import Image from "next/image";
+import { SealCheckIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { formatNaira } from "@/lib/lead";
 import { photoUrl, stateLabel, statusLabel, type Listing } from "@/lib/listings";
 import { options, labelFor } from "@/lib/lead";
-import { IsoHouse } from "../illustrations/IsoHouse";
 
 export function TitleVerifiedBadge({ className = "" }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-1.5 bg-green-900 px-2.5 py-1 text-[0.8125rem] font-bold text-sand ${className}`}>
-      <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" aria-hidden="true">
-        <circle cx="8" cy="8" r="8" fill="#E3B04B" />
-        <path d="m4.5 8.3 2.3 2.3 4.7-5" fill="none" stroke="#16302A" strokeWidth="1.8" />
-      </svg>
+      <SealCheckIcon size={16} className="text-gold" aria-hidden="true" />
       Title verified
     </span>
   );
@@ -32,7 +29,7 @@ export function ListingCard({ listing: l, priority = false }: { listing: Listing
   const place = [l.area, stateLabel(l.state)].filter(Boolean).join(", ");
   const closed = l.status === "sold" || l.status === "let";
   return (
-    <article className="group relative flex flex-col bg-paper transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_-24px_rgba(22,48,42,0.45)]">
+    <article className="group relative flex flex-col border-b border-line bg-paper">
       <div className="relative aspect-[4/3] overflow-hidden bg-terracotta">
         {l.photos[0] ? (
           <Image
@@ -45,7 +42,7 @@ export function ListingCard({ listing: l, priority = false }: { listing: Listing
           />
         ) : (
           <div className="stage-grid flex h-full items-end justify-center px-10 pt-6">
-            <IsoHouse animate={false} title="" className="h-full w-auto" />
+            <p className="self-center px-6 text-center text-paper">Property photos coming soon</p>
           </div>
         )}
         <span className="absolute left-3 top-3 bg-paper px-2.5 py-1 text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-green-900">

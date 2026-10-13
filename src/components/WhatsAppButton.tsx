@@ -1,8 +1,9 @@
-import { whatsappLink } from "@/lib/site";
+import { isPlaceholder, site, whatsappLink } from "@/lib/site";
 import { WhatsAppIcon } from "./ui";
 
 /** Fixed, quiet WhatsApp shortcut. No bounce, no badge. */
 export function WhatsAppButton() {
+  if (isPlaceholder(site.whatsappNumber)) return null;
   return (
     <a
       href={whatsappLink("Hello Pasturelands, I'd like to talk about selling my home.")}

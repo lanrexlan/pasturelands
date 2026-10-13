@@ -3,76 +3,21 @@ import { isPlaceholder, nav, site, telHref, whatsappLink } from "@/lib/site";
 import { Logo } from "./Logo";
 
 export function SiteFooter() {
-  const year = new Date().getFullYear();
-  return (
-    <footer className="on-dark bg-green-900 text-mist">
-      <div className="mx-auto w-full max-w-6xl px-5 pb-28 pt-16 sm:px-8 sm:pb-24">
-        <div className="grid gap-12 border-b border-green-700 pb-12 md:grid-cols-[1.4fr_1fr_1fr]">
-          <div>
-            <Logo tone="light" />
-            <p className="mt-5 max-w-sm">
-              We buy homes directly from owners in Abuja and Lagos, check every
-              title, and sell renovated homes with no agency fee.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="font-sans text-[0.8125rem] font-bold uppercase tracking-[0.16em] text-gold">
-              Contact
-            </h2>
-            <ul className="mt-4 space-y-2">
-              <li>
-                {isPlaceholder(site.phone) ? (
-                  site.phone
-                ) : (
-                  <a className="hover:text-sand" href={telHref()}>
-                    {site.phone}
-                  </a>
-                )}
-              </li>
-              <li>
-                <a className="underline underline-offset-4 hover:text-sand" href={whatsappLink()}>
-                  WhatsApp
-                </a>
-              </li>
-              <li>
-                {isPlaceholder(site.email) ? (
-                  site.email
-                ) : (
-                  <a className="hover:text-sand" href={`mailto:${site.email}`}>
-                    {site.email}
-                  </a>
-                )}
-              </li>
-              <li>{site.address}</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="font-sans text-[0.8125rem] font-bold uppercase tracking-[0.16em] text-gold">
-              Pages
-            </h2>
-            <ul className="mt-4 space-y-2">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <Link className="hover:text-sand" href={item.href}>
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link className="hover:text-sand" href="/privacy">
-                  Privacy notice
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <p className="mt-8 text-[0.9375rem]">
-          © {year} {site.legalName}. Registered in Nigeria, {site.rcNumber}.
-        </p>
+  return <footer className="on-dark bg-green-900 text-mist">
+    <div className="mx-auto w-full max-w-[1440px] px-6 py-10 sm:px-12 lg:px-20">
+      <div className="flex flex-wrap items-center justify-between gap-8 border-b border-green-700 pb-8">
+        <Logo tone="light" />
+        <nav aria-label="Footer"><ul className="flex flex-wrap gap-x-7 gap-y-4 text-sm">{nav.map(item=><li key={item.href}><Link href={item.href} className="hover:text-sand hover:underline">{item.label}</Link></li>)}<li><Link href="/privacy" className="hover:text-sand hover:underline">Privacy</Link></li></ul></nav>
       </div>
-    </footer>
-  );
+      <div className="flex flex-col justify-between gap-6 py-7 text-sm md:flex-row">
+        <p className="max-w-sm">Homes bought directly. Titles checked carefully.<br />Abuja · Lagos</p>
+        <div className="flex flex-wrap gap-x-7 gap-y-3">
+          <a href={telHref()} className="hover:text-sand">{site.phone}</a>
+          <a href={`mailto:${site.email}`} className="break-all hover:text-sand">{site.email}</a>
+          {!isPlaceholder(site.whatsappNumber) && <a href={whatsappLink()} className="hover:text-sand">WhatsApp</a>}
+        </div>
+      </div>
+      <div className="flex flex-wrap justify-between gap-3 text-xs"><p>© {new Date().getFullYear()} {site.legalName}. Registered in Nigeria, {site.rcNumber}.</p>{!isPlaceholder(site.address) && <p>{site.address}</p>}</div>
+    </div>
+  </footer>;
 }

@@ -1,4 +1,4 @@
-import { DeedArt } from "../illustrations/IsoObjects";
+import { CheckIcon } from "@phosphor-icons/react/dist/ssr";
 import { Container, Eyebrow } from "../ui";
 
 const checks = [
@@ -24,15 +24,6 @@ const checks = [
   },
 ];
 
-function Tick() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-7 w-7 shrink-0" aria-hidden="true">
-      <rect width="24" height="24" fill="var(--green-900)" />
-      <path d="m6 12.5 4 4 8-9" fill="none" stroke="var(--gold)" strokeWidth="2.5" />
-    </svg>
-  );
-}
-
 export function Verification() {
   return (
     <section aria-labelledby="verify-heading" className="relative overflow-hidden bg-sand py-20 sm:py-28">
@@ -46,9 +37,7 @@ export function Verification() {
             This protects you as a seller, because the sale won&apos;t fall apart later. And it protects the next buyer,
             because the home they buy from us has already been checked.
           </p>
-          <div data-reveal className="mt-8 hidden max-w-sm lg:block">
-            <DeedArt className="h-auto w-full" />
-          </div>
+
         </div>
 
         <ol data-reveal className="border-t-2 border-green-900">
@@ -59,7 +48,7 @@ export function Verification() {
               style={{ ["--i" as string]: i }}
             >
               <span className="pop">
-                <Tick />
+                <CheckIcon size={24} weight="bold" className="text-green-900" aria-hidden="true" />
               </span>
               <div>
                 <h3 className="font-sans text-[1.125rem] font-bold leading-snug text-green-900">{c.title}</h3>

@@ -7,7 +7,7 @@ The brief is in `PASTURELANDS_WEBSITE_HANDOVER.md`.
 
 | Page | State |
 | --- | --- |
-| `/` Home | Built (isometric illustrations, scroll reveals) |
+| `/` Home | Redesigned (architectural artwork, editorial layout) |
 | `/sell` Seller form | Built, end to end: Supabase + Resend email |
 | `/homes`, `/homes/[slug]` | Built. Designed empty state with waitlist sign-up; cards and detail pages read published listings |
 | `/about` | Built. Founder photos and bios are placeholders |
@@ -95,10 +95,10 @@ emailed to `LEADS_EMAIL_TO` (investors: `INVESTOR_EMAIL_TO`).
 
 - Colours: the deck palette only (Tailwind's default palette is switched off in `globals.css`).
   Text/background pairs are checked for WCAG AA.
-- Illustrations are inline SVG built with a small isometric kit (`src/components/illustrations/iso.tsx`),
-  so there are no image downloads and no 3D library.
-- Motion is CSS only, plus one IntersectionObserver for scroll reveals. Content is only hidden
-  for reveals when JS is running, and everything settles instantly under `prefers-reduced-motion`.
+- Architectural artwork is served as optimized WebP from `public/images/`. It is decorative concept art, not a property listing.
+- DM Sans and DM Serif Display are self-hosted from `assets/fonts/`; builds do not fetch Google Fonts.
+- The selected design direction uses a forest green hero, serif typography, fine rules and terracotta buyer sections.
+- Content remains visible without scroll effects. Form transitions respect `prefers-reduced-motion`.
 
 ## Placeholders the founders must supply
 

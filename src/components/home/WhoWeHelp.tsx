@@ -1,4 +1,3 @@
-import { Neighbourhood } from "../illustrations/IsoObjects";
 import { Container, Eyebrow } from "../ui";
 
 const sellers = [
@@ -27,7 +26,7 @@ const sellers = [
 export function WhoWeHelp() {
   return (
     <section aria-labelledby="who-heading" className="on-dark bg-green-900 py-20 text-mist sm:py-24">
-      <Container className="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
+      <Container className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
         <div className="lg:sticky lg:top-8 lg:self-start">
           <Eyebrow tone="gold">Who we help</Eyebrow>
           <h2 id="who-heading" className="mt-4 text-[2.5rem] text-sand sm:text-[3.25rem]">
@@ -38,7 +37,6 @@ export function WhoWeHelp() {
             no waiting to see who turns up.
           </p>
           <div data-reveal className="mt-10">
-            <Neighbourhood className="h-auto w-full max-w-md" />
             <p className="mt-2 text-[0.9375rem]">Flats, terraces, duplexes, bungalows: we buy all kinds of homes.</p>
           </div>
         </div>
@@ -49,7 +47,7 @@ export function WhoWeHelp() {
               key={s.who}
               data-reveal
               style={{ ["--i" as string]: i }}
-              className="group relative grid gap-2 border-b border-green-700 py-7 transition-colors duration-300 hover:bg-green-700/40 sm:grid-cols-[3rem_12rem_1fr] sm:gap-6 sm:px-3"
+              className="group relative grid gap-2 border-b border-green-700 py-7 transition-colors duration-300 hover:bg-green-700/40 xl:grid-cols-[2rem_12rem_1fr] sm:gap-6 sm:px-3"
             >
               <span className="font-serif text-[1.25rem] text-gold" aria-hidden="true">
                 {String(i + 1).padStart(2, "0")}

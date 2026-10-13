@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { EnquiryForm } from "@/components/form/EnquiryForm";
 import { ListingCard } from "@/components/homes/ListingCard";
-import { RenovationArt } from "@/components/illustrations/IsoObjects";
+import Image from "next/image";
 import { PageIntro } from "@/components/PageIntro";
 import { Container, Eyebrow, WhatsAppIcon } from "@/components/ui";
 import { getListings } from "@/lib/listings";
@@ -63,7 +63,7 @@ export default async function HomesPage() {
         <section aria-labelledby="empty-heading" className="bg-sand py-16 sm:py-20">
           <Container className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
             <div data-reveal className="lg:sticky lg:top-8 lg:self-start">
-              <RenovationArt className="mx-auto h-auto w-full max-w-lg" />
+              <Image src="/images/architecture-buyers.webp" alt="Architectural illustration of a renovated home; not a property listing" width={1000} height={900} className="aspect-[4/5] w-full object-cover object-right" />
             </div>
             <div data-reveal className="border-t-4 border-green-900 bg-paper p-6 sm:p-10">
               <Eyebrow>Coming soon</Eyebrow>
