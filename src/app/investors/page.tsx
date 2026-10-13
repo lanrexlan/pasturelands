@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { EnquiryForm } from "@/components/form/EnquiryForm";
-import { Container, Eyebrow } from "@/components/ui";
+import { PageIntro } from "@/components/PageIntro";
+import { Container } from "@/components/ui";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -14,11 +15,12 @@ export const metadata: Metadata = {
  */
 export default function InvestorsPage() {
   return (
-    <section className="bg-sand">
+    <>
+      <PageIntro eyebrow="Private investment" title="Build what comes next."><p>Pasturelands raises capital privately from a limited number of investors. Contact us to request information.</p></PageIntro>
+    <section className="bg-paper">
       <Container className="grid gap-12 py-14 sm:py-20 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
         <div className="animate-rise">
-          <Eyebrow>Investors</Eyebrow>
-          <h1 className="mt-4 text-[2.75rem] sm:text-[3.75rem]">Request information.</h1>
+          <h2 className="text-[2.25rem] sm:text-[3rem]">Request information.</h2>
           <p className="mt-6 max-w-md text-[1.125rem]">
             Pasturelands raises capital privately from a limited number of investors. To request information, contact
             us.
@@ -42,7 +44,7 @@ export default function InvestorsPage() {
           </p>
         </div>
 
-        <div className="border-t-4 border-green-900 bg-paper p-6 shadow-[0_24px_60px_-40px_rgba(22,48,42,0.5)] sm:p-10">
+        <div className="border-t border-line pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
           <h2 className="text-[2rem]">Contact us</h2>
           <div className="mt-6">
             <EnquiryForm
@@ -55,5 +57,6 @@ export default function InvestorsPage() {
         </div>
       </Container>
     </section>
+    </>
   );
 }

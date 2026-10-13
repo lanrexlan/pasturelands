@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PlusIcon, MinusIcon } from "@phosphor-icons/react/dist/ssr";
 import { Container, Eyebrow } from "../ui";
 
 export const faqs: { q: string; text: string }[] = [
@@ -59,10 +60,7 @@ export function Faq() {
             <details key={f.q} className="group border-b border-line">
               <summary className="flex min-h-16 items-center justify-between gap-6 py-5 font-bold text-green-900">
                 <span className="text-[1.125rem] leading-snug">{f.q}</span>
-                <span
-                  className="relative h-4 w-4 shrink-0 before:absolute before:left-0 before:top-[7px] before:h-0.5 before:w-4 before:bg-terracotta after:absolute after:left-[7px] after:top-0 after:h-4 after:w-0.5 after:bg-terracotta after:transition-transform group-open:after:scale-y-0"
-                  aria-hidden="true"
-                />
+                <PlusIcon className="h-5 w-5 shrink-0 text-terracotta group-open:hidden" aria-hidden="true" /><MinusIcon className="hidden h-5 w-5 shrink-0 text-terracotta group-open:block" aria-hidden="true" />
               </summary>
               <p className="max-w-2xl pb-6">{f.text}</p>
             </details>

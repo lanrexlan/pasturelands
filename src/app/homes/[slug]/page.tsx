@@ -4,7 +4,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EnquiryForm } from "@/components/form/EnquiryForm";
 import { listingPrice, listingType, TitleVerifiedBadge } from "@/components/homes/ListingCard";
-import { IsoHouse } from "@/components/illustrations/IsoHouse";
 import { Container, Eyebrow, WhatsAppIcon, buttonStyles } from "@/components/ui";
 import { formatNaira, labelFor, options } from "@/lib/lead";
 import { getListing, photoUrl, stateLabel, statusLabel } from "@/lib/listings";
@@ -79,7 +78,7 @@ export default async function ListingPage({ params }: Props) {
           </div>
         ) : (
           <div className="stage-grid flex aspect-[16/9] items-end justify-center bg-terracotta px-10 pt-10 lg:aspect-[21/8]">
-            <IsoHouse animate={false} title="" className="h-full w-auto" />
+            <p className="self-center px-6 text-center text-paper">Property photos coming soon</p>
           </div>
         )}
       </Container>

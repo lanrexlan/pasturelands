@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Neighbourhood } from "@/components/illustrations/IsoObjects";
+import Image from "next/image";
 import { PageIntro } from "@/components/PageIntro";
 import { Arrow, ButtonLink, Container, Eyebrow } from "@/components/ui";
 import { site, telHref } from "@/lib/site";
@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 const team = [
-  { name: "Osundoja Osundare", role: "Founder & CEO", initials: "OO" },
-  { name: "Olanrewaju Akande", role: "Co-Founder & COO", initials: "OA" },
+  { name: "Osundoja Osundare", role: "Founder & CEO" },
+  { name: "Olanrewaju Akande", role: "Co-Founder & COO" },
 ];
 
 const reasons = [
@@ -37,7 +37,7 @@ export default function AboutPage() {
       <PageIntro
         eyebrow="About us"
         title="A simpler way to sell a home, and a safer way to buy one."
-        art={<Neighbourhood className="h-auto w-full" />}
+        art={<Image src="/images/architecture-hero.webp" alt="Architectural illustration of a Nigerian courtyard home" width={900} height={1000} className="aspect-[4/5] w-full object-cover object-right" />}
       >
         <p>
           Pasturelands buys homes directly from owners who need to sell quickly. We check each title, pay within weeks,
@@ -85,17 +85,10 @@ export default function AboutPage() {
           </div>
           <ul className="mt-12 grid gap-8 md:grid-cols-2">
             {team.map((p, i) => (
-              <li key={p.name} data-reveal style={{ ["--i" as string]: i }} className="grid gap-6 bg-paper p-6 sm:grid-cols-[10rem_1fr] sm:p-8">
-                {/* [Photo]: replace this tile with the founder's photo (next/image, 320×400). */}
-                <div className="stage-grid flex aspect-[4/5] items-center justify-center bg-terracotta sm:aspect-auto sm:h-48">
-                  <span className="font-serif text-[3.5rem] text-paper" aria-hidden="true">
-                    {p.initials}
-                  </span>
-                </div>
+              <li key={p.name} data-reveal style={{ ["--i" as string]: i }} className="border-t border-line py-8">
                 <div>
                   <h3 className="text-[1.875rem]">{p.name}</h3>
                   <p className="mt-1 font-bold text-terracotta">{p.role}</p>
-                  <p className="mt-4">[Bio to be supplied]</p>
                 </div>
               </li>
             ))}
